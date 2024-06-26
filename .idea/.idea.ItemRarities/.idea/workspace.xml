@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fb63629b-d322-4136-a288-6168c6b6f0f6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/bug_report.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/feature_request.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/localization.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/ActionMenu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/ClothingMenu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/CookingMenu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/CraftingMenu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/InspectMenu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/InventoryMenu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/MillingMenu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/ModSettings.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/TitleCardCompatibility.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/TitleCardGitHub.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/TitleCardPatchNotes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/TitleCardRarities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/TitleCardShowcase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Information/Compatibility.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Information/PatchNotes.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Information/Rarities.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Information/Showcase.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ItemRarities.sln" beforeDir="false" afterPath="$PROJECT_DIR$/ItemRarities.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/BuildInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/Data/LocalizationData.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/Data/VanillaRarities.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/ItemRarities.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/ItemRarities.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/Miscellaneous/Enums.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/Miscellaneous/Logger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/Miscellaneous/Settings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/Patches/Patches.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualStudio/Properties/AssemblyInfo.cs" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="release" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Deaadman"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Deaadman/ItemRarities.git",
+    "accountId": "105cf51a-9990-4625-ba47-c40ec96417c5"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2iPjVi76MklBpZcVi22bZ2h4jow" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "rewrite",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\trent\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\trent\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\trent\\AppData\\Local\\Symbols\\src"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb63629b-d322-4136-a288-6168c6b6f0f6" name="Changes" comment="" />
+      <created>1719399131482</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1719399131482</updated>
+      <workItem from="1719399133196" duration="467000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
