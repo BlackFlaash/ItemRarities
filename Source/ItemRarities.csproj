@@ -19,9 +19,7 @@
 	<!-- List of used references -->
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.28.0" />
-		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="1.9.0" />
-		<PackageReference Include="STBlade.Modding.TLD.LocalizationUtilities" Version="2.0.0" />
+		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.30.0" />
 	</ItemGroup>
 
 	<!-- Most commonly used using's. Add to this so you dont need to define them in the cs files -->
@@ -32,13 +30,6 @@
 		<Using Include="HarmonyLib" />
 		<Using Include="MelonLoader" />
 		<Using Include="UnityEngine" />
-
-		<Using Include="ModSettings" />
-		<Using Include="LocalizationUtilities" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Remove="Resources\ItemRarities.json" />
-	  <EmbeddedResource Include="Resources\ItemRarities.json" />
 	</ItemGroup>
 
 	<!-- This is a build event. It will copy your dll to the currently defined TheLongDarkPath's Mods folder -->
