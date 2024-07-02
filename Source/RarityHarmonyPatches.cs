@@ -1,4 +1,5 @@
 ﻿using Il2CppTLD.Cooking;
+using ItemRarities.Utilities;
 
 namespace ItemRarities;
 
@@ -27,18 +28,19 @@ internal static class RarityHarmonyPatches
         }
     }
     
-    // Crafting and blueprints were recently changed, so I need to figure out how to get the currently selected gearitem now.
-    // [HarmonyPatch(typeof(Panel_Crafting), nameof(Panel_Crafting.RefreshSelectedBlueprint))]
-    // private static class Testing3
-    // {
-    //     private static void Postfix(Panel_Crafting __instance)
-    //     {
-    //         var gearItem = __instance.m_FilteredBlueprints[__instance].m_CraftedResult; 
-    //         
-    //         RarityUIManager.InstantiateOrMoveUILabel(__instance.m_SelectedName.gameObject.transform, 0, 35, 0);
-    //         RarityUIManager.UpdateRarityTextAndColour(RarityManager.GetRarity(__instance));
-    //     }
-    // }
+    [HarmonyPatch(typeof(Panel_Crafting), nameof(Panel_Crafting.RefreshSelectedBlueprint))]
+    private static class Testing3
+    {
+        private static void Postfix(Panel_Crafting __instance)
+        {
+            var gearItem = __instance.SelectedBPI.m_CraftedResult;
+            if (gearItem == null) return;
+            
+            RarityUIManager.InstantiateOrMoveUILabel(__instance.m_SelectedName.gameObject.transform, 0, 35, 0);
+            RarityUIManager.UpdateRarityTextAndColour(RarityManager.GetRarity(gearItem.name));
+            Logging.Log(gearItem.name);
+        }
+    }
     
     [HarmonyPatch(typeof(Panel_Cooking), nameof(Panel_Cooking.GetSelectedCookableItem))]
     private static class Testing4
@@ -51,6 +53,7 @@ internal static class RarityHarmonyPatches
         }
     }
     
+    // Haven't tested, will need too.
     [HarmonyPatch(typeof(Panel_Milling), nameof(Panel_Milling.GetSelected))]
     private static class Testing5
     {
@@ -64,6 +67,7 @@ internal static class RarityHarmonyPatches
     
     // Works, however there is a bug where the last shown rarity stays - until it's updated by a new item.
     // Need to fix this by determining if there is an item being hovered over, if not then disable the label.
+    // Look at the old ItemRarities Patches.cs to see how I did this - as I was having the same error.
     [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.GetActionText))]
     private static class Testing6
     {
