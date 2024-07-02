@@ -47,8 +47,8 @@ public static class RarityManager
         
         yield return null;
     }
-
-    internal static Rarities GetRarity(string itemName) => rarityLookup.TryGetValue(itemName, out var rarity) ? rarity : Rarities.Common;
+    
+    internal static Rarities GetRarity(string itemName) => rarityLookup.GetValueOrDefault(itemName, Rarities.None);
     
     internal static IEnumerator InitializeRarities()
     {

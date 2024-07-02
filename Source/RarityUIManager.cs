@@ -49,10 +49,18 @@ internal static class RarityUIManager
     internal static void UpdateRarityTextAndColour(Rarities rarity)
     {
         if (m_RarityLabel == null) return;
-        
-        m_RarityLabel.text = rarity.ToString();
-        m_RarityLabel.color = GetRarityColor(rarity);
+        if (rarity == Rarities.None)
+        {
+            m_RarityLabel.text = string.Empty;
+            m_RarityLabel.gameObject.SetActive(false);
+        }
+        else
+        {
+            m_RarityLabel.text = rarity.ToString();
+            m_RarityLabel.color = GetRarityColor(rarity);
+            m_RarityLabel.gameObject.SetActive(true);
+        }
     }
 
-    internal static void SetRarityLabelVisible(bool isActive) => m_RarityLabel.gameObject.SetActive(isActive);
+    internal static void UpdateRarityUILabelVisibility(bool isActive) => m_RarityLabel.gameObject.SetActive(isActive);
 }
