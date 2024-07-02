@@ -1,8 +1,0 @@
-D:\The Long Dark\Projects\Maintained\ItemRarities\Source\bin\Debug\net6.0\ItemRarities.deps.json
-D:\The Long Dark\Projects\Maintained\ItemRarities\Source\bin\Debug\net6.0\ItemRarities.dll
-D:\The Long Dark\Projects\Maintained\ItemRarities\Source\obj\Debug\net6.0\ItemRarities.csproj.AssemblyReference.cache
-D:\The Long Dark\Projects\Maintained\ItemRarities\Source\obj\Debug\net6.0\ItemRarities.GeneratedMSBuildEditorConfig.editorconfig
-D:\The Long Dark\Projects\Maintained\ItemRarities\Source\obj\Debug\net6.0\ItemRarities.csproj.CoreCompileInputs.cache
-D:\The Long Dark\Projects\Maintained\ItemRarities\Source\obj\Debug\net6.0\ItemRarities.dll
-D:\The Long Dark\Projects\Maintained\ItemRarities\Source\obj\Debug\net6.0\refint\ItemRarities.dll
-D:\The Long Dark\Projects\Maintained\ItemRarities\Source\obj\Debug\net6.0\ref\ItemRarities.dll
