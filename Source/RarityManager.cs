@@ -8,11 +8,10 @@ namespace ItemRarities;
 
 public static class RarityManager
 {
-    private static bool isInitialized;
-    internal static Dictionary<string, Rarities> rarityLookup = new();
-    private const string GistUrl = "https://gist.githubusercontent.com/Deaadman/88a0f2f8bcc27c07a81331a4714de5c2/raw/95a79002dbcc51c6be40ebfc43090574fd4927fd/ItemRarities.json";
+    internal static bool isInitialized;
+    private static Dictionary<string, Rarities> raritiesLookup = new();
 
-    internal static IEnumerator AssignRarities()
+    private static IEnumerator AssignRarities()
     {
         var gearNames = new SortedSet<string>();
         var enumerator = ConsoleManager.m_SearchStringToGearNames.Values.GetEnumerator();
@@ -26,59 +25,38 @@ public static class RarityManager
             }
         }
         
-        // foreach (var gearName in gearNames)
-        // {
-        //     var gearItem = GearItem.LoadGearItemPrefab(gearName);
-        //     if (gearItem == null) continue;
-        //
-        //     var itemRarity = gearItem.GetComponent<ItemRarity>() ?? gearItem.gameObject.AddComponent<ItemRarity>();
-        //     if (rarityLookup.TryGetValue(gearName, out var rarity))
-        //     {
-        //         itemRarity.Rarity = rarity;
-        //         // Logging.Log($"{gearName} was assigned the rarity: {rarity}");
-        //     }
-        //     else
-        //     {
-        //         Logging.LogWarning($"No rarity found for {gearName}");
-        //     }
-        //
-        //     
-        // }
-        
         yield return null;
     }
     
-    internal static Rarities GetRarity(string itemName) => rarityLookup.GetValueOrDefault(itemName, Rarities.None);
+    internal static Rarities GetRarity(string itemName) => raritiesLookup.GetValueOrDefault(itemName, Rarities.None);
     
     internal static IEnumerator InitializeRarities()
     {
-        yield return LoadRaritiesFromGist();
+        yield return LoadRaritiesFromLocalFile();
         yield return AssignRarities();
         isInitialized = true;
     }
-
-    internal static bool IsInitialized() => isInitialized;
     
-    private static IEnumerator LoadRaritiesFromGist()
+    // This is basically the same logic when loading the Localizations.json
+    // Move this into a common method in another Utils class, maybe.
+    private static IEnumerator LoadRaritiesFromLocalFile()
     {
-        var www = UnityWebRequest.Get(GistUrl);
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Logging.LogError($"Failed to load item rarities: {www.error}");
-            yield break;
-        }
-
+        const string itemRaritiesJson = "ItemRarities.Resources.ItemRarities.json";
+        
         try
         {
-            var jsonObject = JObject.Parse(www.downloadHandler.text);
+            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(itemRaritiesJson) ?? throw new InvalidOperationException($"Failed to load resource: {itemRaritiesJson}");
+            using StreamReader reader = new(stream);
+
+            var jsonText = reader.ReadToEnd();
+            
+            var jsonObject = JObject.Parse(jsonText);
             foreach (var rarityGroup in jsonObject)
             {
                 if (!Enum.TryParse(rarityGroup.Key, out Rarities rarity) || rarityGroup.Value == null) continue;
                 foreach (var item in rarityGroup.Value)
                 {
-                    rarityLookup[item.ToString()] = rarity;
+                    raritiesLookup[item.ToString()] = rarity;
                 }
             }
         }
@@ -86,5 +64,7 @@ public static class RarityManager
         {
             Logging.LogError($"Failed to parse JSON: {ex.Message}");
         }
+        
+        yield break;
     }
 }

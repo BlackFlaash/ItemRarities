@@ -2,17 +2,12 @@ namespace ItemRarities.Utilities;
 
 internal static class UIUtilities
 {
-    internal static UILabel SetupGameObjectUILabel(string gameObjectName, Transform parent, bool worldPositionStays, float posX, float posY, float posZ)
+    internal static UILabel SetupGameObjectWithUILabel(string gameObjectName, Transform parent, bool worldPositionStays, float posX, float posY, float posZ)
     {
-        GameObject newLabelObject = new(gameObjectName);
-        var label = newLabelObject.AddComponent<UILabel>();
-
-        if (parent != null)
-        {
-            newLabelObject.transform.SetParent(parent, worldPositionStays);
-        }
-        
-        newLabelObject.transform.localPosition = new Vector3(posX, posY, posZ);
+        GameObject gameObject = new(gameObjectName);
+        var label = gameObject.AddComponent<UILabel>();
+        gameObject.transform.SetParent(parent, worldPositionStays);
+        gameObject.transform.localPosition = new Vector3(posX, posY, posZ);
 
         return label;
     }

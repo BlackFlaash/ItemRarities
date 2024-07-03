@@ -1,84 +1,103 @@
 ﻿using Il2CppTLD.Cooking;
-using ItemRarities.Utilities;
 
 namespace ItemRarities;
 
-// Need to organise these harmony patches later, from A-Z and their class names
 internal static class RarityHarmonyPatches
 {
     [HarmonyPatch(typeof(ItemDescriptionPage), nameof(ItemDescriptionPage.UpdateGearItemDescription))]
-    private static class Testing1
+    private static class UpdateItemDescriptionPageRarity
     {
         private static void Postfix(ItemDescriptionPage __instance, GearItem gi)
         {
-            if (gi == null) return;
-            RarityUIManager.InstantiateOrMoveUILabel(__instance.m_ItemNameLabel.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityTextAndColour(RarityManager.GetRarity(gi.name));
+            RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_ItemNameLabel.gameObject.transform, 0, 35, 0);
+            RarityUIManager.UpdateRarityLabelProperties(gi, false);
         }
     }
     
-    [HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.RefreshMainWindow))]
-    private static class Testing2
+    [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.UpdateDisplayText))]
+    private static class UpdatePanelActionsRadialRarity
     {
-        private static void Postfix(Panel_Inventory_Examine __instance)
+        private static void Postfix(Panel_ActionsRadial __instance)
         {
-            if (__instance.m_GearItem == null) return;
-            RarityUIManager.InstantiateOrMoveUILabel(__instance.m_Item_Label.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityTextAndColour(RarityManager.GetRarity(__instance.m_GearItem.name));
-        }
-    }
-    
-    [HarmonyPatch(typeof(Panel_Crafting), nameof(Panel_Crafting.RefreshSelectedBlueprint))]
-    private static class Testing3
-    {
-        private static void Postfix(Panel_Crafting __instance)
-        {
-            var gearItem = __instance.SelectedBPI.m_CraftedResult;
-            if (gearItem == null) return;
-            
-            RarityUIManager.InstantiateOrMoveUILabel(__instance.m_SelectedName.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityTextAndColour(RarityManager.GetRarity(gearItem.name));
-            Logging.Log(gearItem.name);
+            if (RarityUIManager.m_RarityLabel == null)
+            {
+                RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_SegmentLabel.gameObject.transform, 0, 35, 0);
+            }
+
+            foreach (var t in __instance.m_RadialArms)
+            {
+                if (t.IsHoveredOver())
+                {
+                    RarityUIManager.UpdateRarityLabelProperties(t.GetGearItem(), false);
+                    break;
+                }
+                else
+                {
+                    RarityUIManager.m_RarityLabel.gameObject.SetActive(false);
+                }
+            }
         }
     }
     
     [HarmonyPatch(typeof(Panel_Cooking), nameof(Panel_Cooking.GetSelectedCookableItem))]
-    private static class Testing4
+    private static class UpdatePanelCookingRarity
     {
         private static void Postfix(Panel_Cooking __instance, ref CookableItem __result)
         {
-            if (__result.m_GearItem == null) return;
-            RarityUIManager.InstantiateOrMoveUILabel(__instance.m_Label_CookedItemName.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityTextAndColour(RarityManager.GetRarity(__result.m_GearItem.name));
+            RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_Label_CookedItemName.gameObject.transform, 0, 35, 0);
+            RarityUIManager.UpdateRarityLabelProperties(__result.m_GearItem, false);
         }
     }
     
-    // Haven't tested, will need too.
+    [HarmonyPatch(typeof(Panel_Crafting), nameof(Panel_Crafting.RefreshSelectedBlueprint))]
+    private static class UpdatePanelCraftingRarity
+    {
+        private static void Postfix(Panel_Crafting __instance)
+        {
+            RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_SelectedName.gameObject.transform, 0, 35, 0);
+            RarityUIManager.UpdateRarityLabelProperties(__instance.SelectedBPI.m_CraftedResult, false);
+        }
+    }
+    
+    [HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.RefreshMainWindow))]
+    private static class UpdatePanelInventoryExamineRarity
+    {
+        private static void Postfix(Panel_Inventory_Examine __instance)
+        {
+            RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_Item_Label.gameObject.transform, 0, 35, 0);
+            RarityUIManager.UpdateRarityLabelProperties(__instance.m_GearItem, false);
+        }
+    }
+
     [HarmonyPatch(typeof(Panel_Milling), nameof(Panel_Milling.GetSelected))]
-    private static class Testing5
+    private static class UpdatePanelMillingRarity
     {
         private static void Postfix(Panel_Milling __instance, ref GearItem __result)
         {
-            if (__result == null) return;
-            RarityUIManager.InstantiateOrMoveUILabel(__instance.m_NameLabel.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityTextAndColour(RarityManager.GetRarity(__result.name));
+            RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_NameLabel.gameObject.transform, 0, 35, 0);
+            RarityUIManager.UpdateRarityLabelProperties(__result, false);
         }
     }
     
-    // Works, however there is a bug where the last shown rarity stays - until it's updated by a new item.
-    // Need to fix this by determining if there is an item being hovered over, if not then disable the label.
-    // Look at the old ItemRarities Patches.cs to see how I did this - as I was having the same error.
-    [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.GetActionText))]
-    private static class Testing6
+    [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.InitLabelsForGear))]
+    private static class UpdatePlayerManagerInspectModeRarity
     {
-        private static void Postfix(Panel_ActionsRadial __instance, RadialMenuArm arm)
+        private static void Prefix(PlayerManager __instance)
         {
-            if (arm.m_GearItem == null) return;
-            RarityUIManager.InstantiateOrMoveUILabel(__instance.m_SegmentLabel.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityTextAndColour(RarityManager.GetRarity(arm.m_GearItem.name));
+            var panelHUD = InterfaceManager.GetPanel<Panel_HUD>();
+            
+            if (RarityUIManager.m_RarityLabelInspect == null) RarityUIManager.InstantiateInspectRarityLabel(panelHUD.m_InspectModeDetailsGrid.gameObject.transform);
+            
+            RarityUIManager.UpdateRarityLabelProperties(__instance.m_Gear, true);
+
+            var inspectFade = panelHUD.m_InspectFadeSequence[1];
+            var newSize = inspectFade.m_FadeElements.Length + 1;
+            var newFadeElements = new UIWidget[newSize];
+
+            Array.Copy(inspectFade.m_FadeElements, newFadeElements, inspectFade.m_FadeElements.Length);
+            newFadeElements[inspectFade.m_FadeElements.Length] = RarityUIManager.m_RarityLabelInspect;
+            inspectFade.m_FadeElements = newFadeElements;
+            panelHUD.m_InspectFadeSequence[1] = inspectFade;
         }
     }
-    
-    // Need to add one more patch down here for when inspecting an item.
-    // See code in the 'old' AdaptiveArsenal branch as I figured out how to include it with all the labels that fade in.
 }
