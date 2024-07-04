@@ -15,7 +15,7 @@
 		<TheLongDarkPath>C:\Program Files (x86)\Steam\steamapps\common\TheLongDark</TheLongDarkPath>
 		<ReleaseFolderPath>D:\The Long Dark\Projects\Maintained\ItemRarities\Release</ReleaseFolderPath>
 	</PropertyGroup>
-
+	
 	<!-- List of used references -->
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

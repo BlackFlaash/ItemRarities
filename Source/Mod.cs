@@ -26,20 +26,7 @@ internal sealed class Mod : MelonMod
     
     private static void LoadLocalizations()
     {
-        const string localizationJson = "ItemRarities.Resources.Localization.json";
-
-        try
-        {
-            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(localizationJson) ?? throw new InvalidOperationException($"Failed to load resource: {localizationJson}");
-            using StreamReader reader = new(stream);
-
-            var jsonText = reader.ReadToEnd();
-
-            LocalizationManager.LoadJsonLocalization(jsonText);
-        }
-        catch (Exception ex)
-        {
-            Logging.LogError(ex.Message);
-        }
+        JsonUtilities.ReadJSON("ItemRarities.Resources.Localization.json", out var jsonText);
+        LocalizationManager.LoadJsonLocalization(jsonText);
     }
 }
