@@ -1,15 +1,19 @@
 using ItemRarities.Enums;
 using ItemRarities.Utilities;
-using Newtonsoft.Json.Linq;
 using System.Collections;
+using System.IO.Compression;
 
 namespace ItemRarities;
 
-public static class RarityManager
+internal static class RarityManager
 {
     internal static bool isInitialized;
-    private static Dictionary<string, Rarities> raritiesLookup = new();
+    internal static Dictionary<string, Rarities> raritiesLookup = new();
 
+    // These XML Documentation isn't included in the build unless specified.
+    // If so, then it'll generate an XML document which the modders will need.
+    // To prevent this, I might just package this mod as a NuGet package, so they don't have to worry about it.
+    
     /// <summary>
     /// Adds a Rarity to your custom GearItem.
     /// </summary>
@@ -42,24 +46,32 @@ public static class RarityManager
     internal static IEnumerator InitializeRarities()
     {
         yield return LoadRaritiesFromLocalFile();
+        LoadRaritiesFromModComponents();
         yield return AssignRarities();
         isInitialized = true;
     }
     
     private static IEnumerator LoadRaritiesFromLocalFile()
     {
-        JsonUtilities.ReadJSON("ItemRarities.Resources.ItemRarities.json", out var jsonText);
-        
-        var jsonObject = JObject.Parse(jsonText);
-        foreach (var rarityGroup in jsonObject)
-        {
-            if (!Enum.TryParse(rarityGroup.Key, out Rarities rarity) || rarityGroup.Value == null) continue;
-            foreach (var item in rarityGroup.Value)
-            {
-                raritiesLookup[item.ToString()] = rarity;
-            }
-        }
-        
+        ParsingUtilities.ReadJSON("ItemRarities.Resources.ItemRarities.json", out var jsonText);
+        ParsingUtilities.LoadRaritiesFromJson(jsonText);
         yield break;
+    }
+    
+    private static void LoadRaritiesFromModComponents()
+    {
+        var modDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        if (modDirectory == null) return;
+
+        var modComponentFiles = Directory.GetFiles(modDirectory, "*.modcomponent");
+
+        foreach (var modComponentFile in modComponentFiles)
+        {
+            using var archive = ZipFile.OpenRead(modComponentFile);
+            var itemRaritiesEntry = archive.GetEntry("rarities.ir");
+            if (itemRaritiesEntry == null) continue;
+            using var reader = new StreamReader(itemRaritiesEntry.Open());
+            ParsingUtilities.LoadRaritiesFromIR(reader);
+        }
     }
 }

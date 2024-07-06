@@ -26,7 +26,7 @@ internal sealed class Mod : MelonMod
     
     private static void LoadLocalizations()
     {
-        JsonUtilities.ReadJSON("ItemRarities.Resources.Localization.json", out var jsonText);
+        ParsingUtilities.ReadJSON("ItemRarities.Resources.Localization.json", out var jsonText);
         LocalizationManager.LoadJsonLocalization(jsonText);
     }
 }
