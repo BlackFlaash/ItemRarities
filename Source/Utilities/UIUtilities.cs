@@ -19,7 +19,7 @@ internal static class UIUtilities
         UILabel.Crispness crispness,
         NGUIText.Alignment alignment,
         UILabel.Overflow overflow,
-        bool mulitLine,
+        bool multiLine,
         int depth,
         int fontSize,
         Color color,
@@ -34,10 +34,14 @@ internal static class UIUtilities
         label.keepCrispWhenShrunk = crispness;
         label.alignment = alignment;
         label.overflowMethod = overflow;
-        label.multiLine = mulitLine;
+        label.multiLine = multiLine;
         label.depth = depth;
         label.fontSize = fontSize;
         label.color = color;
         label.capsLock = capsLock;
+        
+        label.effectStyle = UILabel.Effect.Outline;
+        label.effectColor = Color.black;
+        label.effectDistance = new Vector2(0.5f, 0.5f);
     }
 }

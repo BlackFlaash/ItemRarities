@@ -1,4 +1,5 @@
-﻿using ItemRarities.Enums;
+﻿using ItemRarities.Components;
+using ItemRarities.Enums;
 using ItemRarities.Utilities;
 
 namespace ItemRarities;
@@ -103,8 +104,19 @@ internal static class RarityUIManager
         else
         {
             rarityLabelType.text = GetRarityLocalizationKey(rarity);
-            rarityLabelType.color = GetRarityColour(rarity);
             rarityLabelType.gameObject.SetActive(true);
+            
+            var existingShiny = rarityLabelType.GetComponent<MythicGlowEffect>();
+            if (existingShiny != null)
+            {
+                UnityEngine.Object.Destroy(existingShiny);
+            }
+            if (rarity == Rarities.Mythic)
+            {
+                rarityLabelType.gameObject.AddComponent<MythicGlowEffect>();
+            }
+            
+            rarityLabelType.color = GetRarityColour(rarity);
         }
     }
 }
