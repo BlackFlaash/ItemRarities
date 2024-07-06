@@ -2,7 +2,7 @@
 using ItemRarities.Enums;
 using ItemRarities.Utilities;
 
-namespace ItemRarities;
+namespace ItemRarities.Managers;
 
 internal static class RarityUIManager
 {

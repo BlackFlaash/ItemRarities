@@ -1,3 +1,4 @@
+using ItemRarities.Managers;
 using ItemRarities.Utilities;
 using LocalizationUtilities;
 

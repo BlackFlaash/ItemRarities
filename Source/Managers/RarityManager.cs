@@ -3,7 +3,7 @@ using ItemRarities.Utilities;
 using System.Collections;
 using System.IO.Compression;
 
-namespace ItemRarities;
+namespace ItemRarities.Managers;
 
 internal static class RarityManager
 {

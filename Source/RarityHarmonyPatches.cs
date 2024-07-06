@@ -1,4 +1,5 @@
 ﻿using Il2CppTLD.Cooking;
+using ItemRarities.Managers;
 
 namespace ItemRarities;
 
@@ -28,6 +29,7 @@ internal static class RarityHarmonyPatches
             {
                 if (t.IsHoveredOver())
                 {
+                    RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_SegmentLabel.gameObject.transform, 0, 35, 0);
                     RarityUIManager.UpdateRarityLabelProperties(t.GetGearItem(), false);
                     break;
                 }

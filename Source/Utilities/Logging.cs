@@ -1,5 +1,6 @@
 using System.Text;
 using ItemRarities.Enums;
+using ItemRarities.Managers;
 
 namespace ItemRarities.Utilities;
 

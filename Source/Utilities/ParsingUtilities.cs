@@ -1,4 +1,5 @@
 using ItemRarities.Enums;
+using ItemRarities.Managers;
 using Newtonsoft.Json.Linq;
 
 namespace ItemRarities.Utilities;
