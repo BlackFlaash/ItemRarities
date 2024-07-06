@@ -1,5 +1,6 @@
 ﻿using ItemRarities.Components;
 using ItemRarities.Enums;
+using ItemRarities.Properties;
 using ItemRarities.Utilities;
 
 namespace ItemRarities.Managers;
@@ -11,6 +12,19 @@ internal static class RarityUIManager
 
     private static Color GetRarityColour(Rarities rarity)
     {
+        if (Settings.Instance.customColours)
+        {
+            return rarity switch
+            {
+                Rarities.Common => new Color(Settings.Instance.commonRed, Settings.Instance.commonGreen, Settings.Instance.commonBlue),
+                Rarities.Uncommon => new Color(Settings.Instance.uncommonRed, Settings.Instance.uncommonGreen, Settings.Instance.uncommonBlue),
+                Rarities.Rare => new Color(Settings.Instance.rareRed, Settings.Instance.rareGreen, Settings.Instance.rareBlue),
+                Rarities.Epic => new Color(Settings.Instance.epicRed, Settings.Instance.epicGreen, Settings.Instance.epicBlue),
+                Rarities.Legendary => new Color(Settings.Instance.legendaryRed, Settings.Instance.legendaryGreen, Settings.Instance.legendaryBlue),
+                Rarities.Mythic => new Color(Settings.Instance.mythicRed, Settings.Instance.mythicGreen, Settings.Instance.mythicBlue),
+                _ => Color.clear
+            };
+        }
         return rarity switch
         {
             Rarities.Common => new Color(0.6f, 0.6f, 0.6f),

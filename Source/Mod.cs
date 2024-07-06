@@ -1,4 +1,5 @@
 using ItemRarities.Managers;
+using ItemRarities.Properties;
 using ItemRarities.Utilities;
 using LocalizationUtilities;
 
@@ -9,6 +10,7 @@ internal sealed class Mod : MelonMod
     public override void OnInitializeMelon()
     {
         LoadLocalizations();
+        Settings.OnLoad();
     }
 
     // Uncomment this when required, e.g. after a new update drops to see which items don't have a rarity.
