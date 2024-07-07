@@ -1,5 +1,6 @@
 ﻿using Il2CppTLD.Cooking;
 using ItemRarities.Managers;
+using ItemRarities.Utilities;
 
 namespace ItemRarities;
 
@@ -56,6 +57,7 @@ internal static class RarityLabelPatches
     {
         private static void Postfix(Panel_Crafting __instance)
         {
+            if (__instance.SelectedBPI == null) return;
             RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_SelectedName.gameObject.transform, 0, 35, 0);
             RarityUIManager.UpdateRarityLabelProperties(__instance.SelectedBPI.m_CraftedResult);
         }
