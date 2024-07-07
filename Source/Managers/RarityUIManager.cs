@@ -36,6 +36,15 @@ internal static class RarityUIManager
         }
     }
     
+    internal static System.Collections.IEnumerator DelayedUpdateAllSlots(Panel_Clothing panel)
+    {
+        yield return new WaitForEndOfFrame();
+        foreach (var slot in panel.m_ClothingSlots)
+        {
+            UpdateClothingSlotColors(slot);
+        }
+    }
+    
     internal static Color GetRarityAndColour(GearItem gearItem, float alpha = 1f) => GetRarityColour(RarityManager.GetRarity(gearItem.name), alpha);
     
     private static Color GetRarityColour(Rarities rarity, float alpha = 1f)
@@ -103,6 +112,53 @@ internal static class RarityUIManager
     }
     
     internal static void ToggleRaritySort() => isRaritySortDescending = !isRaritySortDescending;
+
+    internal static void UpdateClothingSlotColors(ClothingSlot slot)
+    {
+        var color = slot.m_GearItem != null 
+            ? RarityUIManager.GetRarityAndColour(slot.m_GearItem) 
+            : new Color(1f, 1f, 1f, 0.5f);
+    
+        var hoverColor = new Color(color.r, color.g, color.b, 0.5f);
+        var pressedColor = new Color(color.r, color.g, color.b, 0.6f);
+
+        if (slot.m_Selected != null)
+        {
+            var children = new Il2CppSystem.Collections.Generic.List<Transform>();
+            slot.m_Selected.GetComponentsInChildren(true, children);
+            for (var i = 0; i < children.Count; i++)
+            {
+                var child = children[i];
+                if (child.gameObject.name is "InnerGlow" or "TweenedContent")
+                {
+                    child.GetComponent<UISprite>().color = color;
+                }
+            }
+        }
+
+        if (slot.m_SpriteBoxHover != null)
+        {
+            slot.m_SpriteBoxHover.GetComponent<UISprite>().color = hoverColor;
+        }
+
+        var buttonTransforms = new Il2CppSystem.Collections.Generic.List<Transform>();
+        slot.GetComponentsInChildren(true, buttonTransforms);
+        for (var i = 0; i < buttonTransforms.Count; i++)
+        {
+            var child = buttonTransforms[i];
+            if (child.gameObject.name != "Button") continue;
+            var widget = child.GetComponent<UIWidget>();
+            if (widget != null)
+            {
+                widget.color = color;
+            }
+
+            var button = child.GetComponent<UIButton>();
+            if (button == null) continue;
+            button.hover = hoverColor;
+            button.pressed = pressedColor;
+        }
+    }
     
     internal static void UpdateRarityLabelProperties(GearItem gearItem, bool inspectLabel = false)
     {

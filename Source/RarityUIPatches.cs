@@ -1,4 +1,3 @@
-using ItemRarities.Enums;
 using ItemRarities.Managers;
 using ItemRarities.Utilities;
 
@@ -6,47 +5,23 @@ namespace ItemRarities;
 
 internal static class RarityUIPatches
 {
-    // This logic for the clothing is very work-in-progress.
-    // It works, however there are some bugs which I need to further diagnose.
+    [HarmonyPatch(typeof(ClothingSlot), nameof(ClothingSlot.ActivateMouseHoverHighlight))]
+    private static class UpdateClothingSlotItemHoverRarityColour
+    {
+        private static void Postfix(ClothingSlot __instance)
+        {
+            RarityUIManager.UpdateClothingSlotColors(__instance);
+        }
+    }
     
-    // [HarmonyPatch(typeof(ClothingSlot), nameof(ClothingSlot.SetSelected))]
-    // private static class Testing1
-    // {
-    //     private static void Postfix(ClothingSlot __instance, bool isSelected)
-    //     {
-    //         if (__instance.m_GearItem == null) return;
-    //         
-    //         foreach (Transform child in __instance.m_Selected.transform)
-    //         {
-    //             if (child.gameObject.name == "InnerGlow")
-    //             {
-    //                 child.GetComponent<UISprite>().color = RarityUIManager.GetRarityAndColour(__instance.m_GearItem);
-    //             }
-    //             if (child.gameObject.name == "TweenedContent")
-    //             {
-    //                 child.GetComponent<UISprite>().color = RarityUIManager.GetRarityAndColour(__instance.m_GearItem);
-    //             }
-    //         }
-    //     }
-    // }
-    //
-    // [HarmonyPatch(typeof(ClothingSlot), nameof(ClothingSlot.ActivateMouseHoverHighlight))]
-    // private static class Testing2
-    // {
-    //     private static void Postfix(ClothingSlot __instance)
-    //     {
-    //         if (__instance.m_GearItem == null) return;
-    //         __instance.m_SpriteBoxHover.GetComponent<UISprite>().color = RarityUIManager.GetRarityAndColour(__instance.m_GearItem, 0.5f);
-    //
-    //         foreach (Transform child in __instance.transform)
-    //         {
-    //             if (child.gameObject.name != "Button") continue;
-    //             child.GetComponent<UIWidget>().color = RarityUIManager.GetRarityAndColour(__instance.m_GearItem);
-    //             child.GetComponent<UIButton>().hover = RarityUIManager.GetRarityAndColour(__instance.m_GearItem, 0.4f);
-    //             child.GetComponent<UIButton>().pressed = RarityUIManager.GetRarityAndColour(__instance.m_GearItem, 0.6f);
-    //         }
-    //     }
-    // }
+    [HarmonyPatch(typeof(ClothingSlot), nameof(ClothingSlot.SetSelected))]
+    private static class UpdateClothingSlotSelectedRarityColour
+    {
+        private static void Postfix(ClothingSlot __instance, bool isSelected)
+        {
+            RarityUIManager.UpdateClothingSlotColors(__instance);
+        }
+    }
     
     [HarmonyPatch(typeof(InventoryGridItem), nameof(InventoryGridItem.OnHover))]
     private static class UpdateInventoryGridItemHoverRarityColour
@@ -55,6 +30,28 @@ internal static class RarityUIPatches
         {
             __instance.m_Button.hover = RarityUIManager.GetRarityAndColour(__instance.m_GearItem, 0.5f);
             __instance.m_Button.pressed = RarityUIManager.GetRarityAndColour(__instance.m_GearItem, 0.5f);
+        }
+    }
+    
+    [HarmonyPatch(typeof(Panel_Clothing), nameof(Panel_Clothing.Enable))]
+    private static class UpdatePanelClothingRarityColourImmediately
+    {
+        private static void Postfix(Panel_Clothing __instance)
+        {
+            foreach (var slot in __instance.m_ClothingSlots)
+            {
+                RarityUIManager.UpdateClothingSlotColors(slot);
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(Panel_Clothing), nameof(Panel_Clothing.OnUseClothingItem))]
+    private static class UpdatePanelClothingSelectedRarityColour
+    {
+        private static void Postfix(Panel_Clothing __instance)
+        {
+            // Need this to properly update the colours for some reason?
+            MelonCoroutines.Start(RarityUIManager.DelayedUpdateAllSlots(__instance));
         }
     }
     
