@@ -61,6 +61,16 @@ internal static class RarityLabelPatches
         }
     }
     
+    [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.SetHoverText))]
+    private static class UpdateHoverLabelRarity
+    {
+        private static void Postfix(Panel_HUD __instance, string hoverText, GameObject itemUnderCrosshairs, HoverTextState textState)
+        {
+            if (itemUnderCrosshairs == null || itemUnderCrosshairs.GetComponent<GearItem>() == null) return;
+            __instance.m_Label_ObjectName.color = RarityUIManager.GetRarityAndColour(itemUnderCrosshairs.GetComponent<GearItem>());
+        }
+    }
+    
     [HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.RefreshMainWindow))]
     private static class UpdatePanelInventoryExamineRarity
     {
