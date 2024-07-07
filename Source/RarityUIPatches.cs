@@ -1,4 +1,6 @@
+using ItemRarities.Enums;
 using ItemRarities.Managers;
+using ItemRarities.Utilities;
 
 namespace ItemRarities;
 
@@ -12,14 +14,15 @@ internal static class RarityUIPatches
     // {
     //     private static void Postfix(ClothingSlot __instance, bool isSelected)
     //     {
+    //         if (__instance.m_GearItem == null) return;
+    //         
     //         foreach (Transform child in __instance.m_Selected.transform)
     //         {
-    //             if (child.gameObject != null && child.gameObject.name == "InnerGlow")
+    //             if (child.gameObject.name == "InnerGlow")
     //             {
     //                 child.GetComponent<UISprite>().color = RarityUIManager.GetRarityAndColour(__instance.m_GearItem);
     //             }
-    //
-    //             if (child.gameObject != null && child.gameObject.name == "TweenedContent")
+    //             if (child.gameObject.name == "TweenedContent")
     //             {
     //                 child.GetComponent<UISprite>().color = RarityUIManager.GetRarityAndColour(__instance.m_GearItem);
     //             }
@@ -52,6 +55,43 @@ internal static class RarityUIPatches
         {
             __instance.m_Button.hover = RarityUIManager.GetRarityAndColour(__instance.m_GearItem, 0.5f);
             __instance.m_Button.pressed = RarityUIManager.GetRarityAndColour(__instance.m_GearItem, 0.5f);
+        }
+    }
+    
+    [HarmonyPatch(typeof(Panel_Inventory), nameof(Panel_Inventory.Initialize))]
+    private static class InitializeSortRarityButton
+    {
+        private static void Postfix(Panel_Inventory __instance)
+        {
+            UIButtonExtensions.NewSortButton(__instance.m_SortButtons, "Button_SortRarity", "ico_Star", __instance.OnSortChange, 85, 1.8f);
+            __instance.m_SortFlipDictionary.Add("GAMEPLAY_SortRarity", false);
+        }
+    }
+    
+    [HarmonyPatch(typeof(Panel_Inventory), nameof(Panel_Inventory.OnSortChange))]
+    private static class SortChangeRarityPatch
+    {
+        private static void Prefix(Panel_Inventory __instance, UIButton sortButtonClicked)
+        {
+            if (sortButtonClicked.name == "Button_SortRarity")
+            {
+                if (__instance.m_SortName == "GAMEPLAY_SortRarity")
+                {
+                    RarityUIManager.ToggleRaritySort();
+                }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(Panel_Inventory), nameof(Panel_Inventory.UpdateFilteredInventoryList))]
+    private static class SortByRaritiesPatch
+    {
+        private static void Postfix(Panel_Inventory __instance)
+        {
+            if (__instance.m_SortName == "GAMEPLAY_SortRarity")
+            {
+                RarityUIManager.CompareGearByRarity(__instance);
+            }
         }
     }
     

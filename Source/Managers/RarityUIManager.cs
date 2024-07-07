@@ -7,10 +7,36 @@ namespace ItemRarities.Managers;
 
 internal static class RarityUIManager
 {
+    private static bool isRaritySortDescending = true;
     internal static UILabel? m_RarityLabel;
     internal static UILabel? m_RarityLabelInspect;
-
-    internal static Color GetRarityAndColour(GearItem gearItem, float alpha = 1f) => gearItem == null ? Color.clear : GetRarityColour(RarityManager.GetRarity(gearItem.name), alpha);
+    
+    internal static void CompareGearByRarity(Panel_Inventory panelInventory)
+    {
+        var tempList = new List<GearItem>();
+        for (var i = 0; i < panelInventory.m_FilteredInventoryList.Count; i++)
+        {
+            tempList.Add(panelInventory.m_FilteredInventoryList[i]);
+        }
+        
+        tempList.Sort((a, b) => 
+        {
+            var rarityA = RarityManager.GetRarity(a.name);
+            var rarityB = RarityManager.GetRarity(b.name);
+            
+            return isRaritySortDescending 
+                ? rarityB.CompareTo(rarityA) 
+                : rarityA.CompareTo(rarityB);
+        });
+        
+        panelInventory.m_FilteredInventoryList.Clear();
+        foreach (var i in tempList)
+        {
+            panelInventory.m_FilteredInventoryList.Add(i);
+        }
+    }
+    
+    internal static Color GetRarityAndColour(GearItem gearItem, float alpha = 1f) => GetRarityColour(RarityManager.GetRarity(gearItem.name), alpha);
     
     private static Color GetRarityColour(Rarities rarity, float alpha = 1f)
     {
@@ -59,21 +85,7 @@ internal static class RarityUIManager
         gameObject.transform.SetParent(transform, false);
         gameObject.transform.localPosition = new Vector3(0, 0, 0);
         
-        m_RarityLabelInspect = UIUtilities.SetupGameObjectWithUILabel("RarityLabelInspect", gameObject.transform, false, 40, 0, 0);
-        UIUtilities.SetupUILabel(
-            m_RarityLabelInspect,
-            string.Empty,
-            FontStyle.Normal,
-            UILabel.Crispness.Always,
-            NGUIText.Alignment.Left,
-            UILabel.Overflow.ResizeHeight,
-            true,
-            2,
-            14,
-            Color.clear,
-            true
-        );
-        
+        m_RarityLabelInspect = UILabelExtensions.SetupGameObjectWithUILabel("RarityLabelInspect", gameObject.transform, false, true, 40);
         m_RarityLabelInspect.transform.SetSiblingIndex(0);
     }
     
@@ -81,20 +93,7 @@ internal static class RarityUIManager
     {
         if (m_RarityLabel == null)
         {
-            m_RarityLabel = UIUtilities.SetupGameObjectWithUILabel("RarityLabel", transform, false, posX, posY, posZ);
-            UIUtilities.SetupUILabel(
-                m_RarityLabel,
-                string.Empty,
-                FontStyle.Normal,
-                UILabel.Crispness.Always,
-                NGUIText.Alignment.Center,
-                UILabel.Overflow.ResizeHeight,
-                true,
-                0,
-                18,
-                Color.clear,
-                true
-            );
+            m_RarityLabel = UILabelExtensions.SetupGameObjectWithUILabel("RarityLabel", transform, false, false, posX, posY, posZ);
         }
         else
         {
@@ -102,6 +101,8 @@ internal static class RarityUIManager
             m_RarityLabel.transform.localPosition = new Vector3(posX, posY, posZ);
         }
     }
+    
+    internal static void ToggleRaritySort() => isRaritySortDescending = !isRaritySortDescending;
     
     internal static void UpdateRarityLabelProperties(GearItem gearItem, bool inspectLabel = false)
     {

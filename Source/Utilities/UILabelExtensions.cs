@@ -1,18 +1,32 @@
 namespace ItemRarities.Utilities;
 
-internal static class UIUtilities
+internal static class UILabelExtensions
 {
-    internal static UILabel SetupGameObjectWithUILabel(string gameObjectName, Transform parent, bool worldPositionStays, float posX, float posY, float posZ)
+    internal static UILabel SetupGameObjectWithUILabel(string gameObjectName, Transform parent, bool worldPositionStays, bool inspectLabel = false, float posX = 0f, float posY = 0f, float posZ = 0f)
     {
         GameObject gameObject = new(gameObjectName);
-        var label = gameObject.AddComponent<UILabel>();
+        var uiLabel = gameObject.AddComponent<UILabel>();
         gameObject.transform.SetParent(parent, worldPositionStays);
         gameObject.transform.localPosition = new Vector3(posX, posY, posZ);
 
-        return label;
+        SetupUILabel(
+            uiLabel,
+            string.Empty,
+            FontStyle.Normal,
+            UILabel.Crispness.Always,
+            inspectLabel ? NGUIText.Alignment.Left : NGUIText.Alignment.Center,
+            UILabel.Overflow.ResizeHeight,
+            true,
+            inspectLabel ? 2 : 0,
+            inspectLabel ? 14 : 18,
+            Color.clear,
+            true
+        );
+
+        return uiLabel;
     }
 
-    internal static void SetupUILabel(
+    private static void SetupUILabel(
         UILabel label,
         string text,
         FontStyle fontStyle,
