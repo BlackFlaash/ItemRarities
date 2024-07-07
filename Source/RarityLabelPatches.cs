@@ -3,7 +3,7 @@ using ItemRarities.Managers;
 
 namespace ItemRarities;
 
-internal static class RarityHarmonyPatches
+internal static class RarityLabelPatches
 {
     [HarmonyPatch(typeof(ItemDescriptionPage), nameof(ItemDescriptionPage.UpdateGearItemDescription))]
     private static class UpdateItemDescriptionPageRarity
@@ -11,7 +11,7 @@ internal static class RarityHarmonyPatches
         private static void Postfix(ItemDescriptionPage __instance, GearItem gi)
         {
             RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_ItemNameLabel.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityLabelProperties(gi, false);
+            RarityUIManager.UpdateRarityLabelProperties(gi);
         }
     }
     
@@ -30,7 +30,7 @@ internal static class RarityHarmonyPatches
                 if (t.IsHoveredOver())
                 {
                     RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_SegmentLabel.gameObject.transform, 0, 35, 0);
-                    RarityUIManager.UpdateRarityLabelProperties(t.GetGearItem(), false);
+                    RarityUIManager.UpdateRarityLabelProperties(t.GetGearItem());
                     break;
                 }
                 else
@@ -47,7 +47,7 @@ internal static class RarityHarmonyPatches
         private static void Postfix(Panel_Cooking __instance, ref CookableItem __result)
         {
             RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_Label_CookedItemName.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityLabelProperties(__result.m_GearItem, false);
+            RarityUIManager.UpdateRarityLabelProperties(__result.m_GearItem);
         }
     }
     
@@ -57,7 +57,7 @@ internal static class RarityHarmonyPatches
         private static void Postfix(Panel_Crafting __instance)
         {
             RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_SelectedName.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityLabelProperties(__instance.SelectedBPI.m_CraftedResult, false);
+            RarityUIManager.UpdateRarityLabelProperties(__instance.SelectedBPI.m_CraftedResult);
         }
     }
     
@@ -67,7 +67,7 @@ internal static class RarityHarmonyPatches
         private static void Postfix(Panel_Inventory_Examine __instance)
         {
             RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_Item_Label.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityLabelProperties(__instance.m_GearItem, false);
+            RarityUIManager.UpdateRarityLabelProperties(__instance.m_GearItem);
         }
     }
 
@@ -77,7 +77,7 @@ internal static class RarityHarmonyPatches
         private static void Postfix(Panel_Milling __instance, ref GearItem __result)
         {
             RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_NameLabel.gameObject.transform, 0, 35, 0);
-            RarityUIManager.UpdateRarityLabelProperties(__result, false);
+            RarityUIManager.UpdateRarityLabelProperties(__result);
         }
     }
     

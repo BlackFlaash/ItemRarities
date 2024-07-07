@@ -10,33 +10,35 @@ internal static class RarityUIManager
     internal static UILabel? m_RarityLabel;
     internal static UILabel? m_RarityLabelInspect;
 
-    private static Color GetRarityColour(Rarities rarity)
+    internal static Color GetRarityAndColour(GearItem gearItem, float alpha = 1f) => gearItem == null ? Color.clear : GetRarityColour(RarityManager.GetRarity(gearItem.name), alpha);
+    
+    private static Color GetRarityColour(Rarities rarity, float alpha = 1f)
     {
         if (Settings.Instance.customColours)
         {
             return rarity switch
             {
-                Rarities.Common => new Color(Settings.Instance.commonRed, Settings.Instance.commonGreen, Settings.Instance.commonBlue),
-                Rarities.Uncommon => new Color(Settings.Instance.uncommonRed, Settings.Instance.uncommonGreen, Settings.Instance.uncommonBlue),
-                Rarities.Rare => new Color(Settings.Instance.rareRed, Settings.Instance.rareGreen, Settings.Instance.rareBlue),
-                Rarities.Epic => new Color(Settings.Instance.epicRed, Settings.Instance.epicGreen, Settings.Instance.epicBlue),
-                Rarities.Legendary => new Color(Settings.Instance.legendaryRed, Settings.Instance.legendaryGreen, Settings.Instance.legendaryBlue),
-                Rarities.Mythic => new Color(Settings.Instance.mythicRed, Settings.Instance.mythicGreen, Settings.Instance.mythicBlue),
+                Rarities.Common => new Color(Settings.Instance.commonRed, Settings.Instance.commonGreen, Settings.Instance.commonBlue, alpha),
+                Rarities.Uncommon => new Color(Settings.Instance.uncommonRed, Settings.Instance.uncommonGreen, Settings.Instance.uncommonBlue, alpha),
+                Rarities.Rare => new Color(Settings.Instance.rareRed, Settings.Instance.rareGreen, Settings.Instance.rareBlue, alpha),
+                Rarities.Epic => new Color(Settings.Instance.epicRed, Settings.Instance.epicGreen, Settings.Instance.epicBlue, alpha),
+                Rarities.Legendary => new Color(Settings.Instance.legendaryRed, Settings.Instance.legendaryGreen, Settings.Instance.legendaryBlue, alpha),
+                Rarities.Mythic => new Color(Settings.Instance.mythicRed, Settings.Instance.mythicGreen, Settings.Instance.mythicBlue, alpha),
                 _ => Color.clear
             };
         }
         return rarity switch
         {
-            Rarities.Common => new Color(0.6f, 0.6f, 0.6f),
-            Rarities.Uncommon => new Color(0.3f, 0.7f, 0f),
-            Rarities.Rare => new Color(0f, 0.6f, 0.9f),
-            Rarities.Epic => new Color(0.7f, 0.3f, 0.9f),
-            Rarities.Legendary => new Color(0.9f, 0.5f, 0.2f),
-            Rarities.Mythic => new Color(0.8f, 0.7f, 0.3f),
+            Rarities.Common => new Color(0.6f, 0.6f, 0.6f, alpha),
+            Rarities.Uncommon => new Color(0.3f, 0.7f, 0f, alpha),
+            Rarities.Rare => new Color(0f, 0.6f, 0.9f, alpha),
+            Rarities.Epic => new Color(0.7f, 0.3f, 0.9f, alpha),
+            Rarities.Legendary => new Color(0.9f, 0.5f, 0.2f, alpha),
+            Rarities.Mythic => new Color(0.8f, 0.7f, 0.3f, alpha),
             _ => Color.clear
         };
     }
-
+    
     private static string GetRarityLocalizationKey(Rarities rarity)
     {
         return rarity switch
@@ -101,7 +103,7 @@ internal static class RarityUIManager
         }
     }
     
-    internal static void UpdateRarityLabelProperties(GearItem gearItem, bool inspectLabel)
+    internal static void UpdateRarityLabelProperties(GearItem gearItem, bool inspectLabel = false)
     {
         if (gearItem == null) return;
         
