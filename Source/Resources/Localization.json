@@ -17,7 +17,7 @@
     "Dutch": "",
     "Finnish": "",
     "Italian": "Comune",
-    "Polish": "",
+    "Polish": "Pospolity",
     "Ukrainian": ""
   },
 
@@ -39,7 +39,7 @@
     "Dutch": "",
     "Finnish": "",
     "Italian": "Non Comune",
-    "Polish": "",
+    "Polish": "Niepospolity",
     "Ukrainian": ""
   },
 
@@ -61,7 +61,7 @@
     "Dutch": "",
     "Finnish": "",
     "Italian": "Raro",
-    "Polish": "",
+    "Polish": "Rzadki",
     "Ukrainian": ""
   },
 
@@ -83,7 +83,7 @@
     "Dutch": "",
     "Finnish": "",
     "Italian": "Epico",
-    "Polish": "",
+    "Polish": "Epicki",
     "Ukrainian": ""
   },
 
@@ -105,7 +105,7 @@
     "Dutch": "",
     "Finnish": "",
     "Italian": "Leggendario",
-    "Polish": "",
+    "Polish": "Legendarny",
     "Ukrainian": ""
   },
 
@@ -127,7 +127,7 @@
     "Dutch": "",
     "Finnish": "",
     "Italian": "Mitico",
-    "Polish": "",
+    "Polish": "Mityczny",
     "Ukrainian": ""
   }
 }

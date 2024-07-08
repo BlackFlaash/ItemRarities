@@ -93,6 +93,7 @@ internal static class RarityLabelPatches
         }
     }
     
+    // Might be a good idea to revisit later and use the same technique for the UIButton for the sorting.
     [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.InitLabelsForGear))]
     private static class UpdatePlayerManagerInspectModeRarity
     {

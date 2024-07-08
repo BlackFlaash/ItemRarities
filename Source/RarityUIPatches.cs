@@ -3,6 +3,7 @@ using ItemRarities.Utilities;
 
 namespace ItemRarities;
 
+// Need to change the colour of the Radial Menu items too, I think that would be pretty awesome.
 internal static class RarityUIPatches
 {
     [HarmonyPatch(typeof(ClothingSlot), nameof(ClothingSlot.ActivateMouseHoverHighlight))]
