@@ -5,7 +5,7 @@ using System.IO.Compression;
 
 namespace ItemRarities.Managers;
 
-internal static class RarityManager
+public static class RarityManager
 {
     internal static bool isInitialized;
     internal static Dictionary<string, Rarities> raritiesLookup = new();

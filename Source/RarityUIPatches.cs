@@ -3,7 +3,6 @@ using ItemRarities.Utilities;
 
 namespace ItemRarities;
 
-// Need to change the colour of the Radial Menu items too, I think that would be pretty awesome.
 internal static class RarityUIPatches
 {
     [HarmonyPatch(typeof(ClothingSlot), nameof(ClothingSlot.ActivateMouseHoverHighlight))]
@@ -98,6 +97,7 @@ internal static class RarityUIPatches
     {
         private static void Postfix(Panel_Inventory __instance)
         {
+            if (__instance.m_SelectedSpriteObj == null || __instance.m_SelectedSpriteTweenScale.gameObject == null) return;
             __instance.m_SelectedSpriteObj.GetComponentInChildren<UISprite>().color = RarityUIManager.GetRarityAndColour(__instance.GetCurrentlySelectedGearItem());
             __instance.m_SelectedSpriteTweenScale.GetComponent<UISprite>().color = RarityUIManager.GetRarityAndColour(__instance.GetCurrentlySelectedGearItem());
         }

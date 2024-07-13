@@ -1,7 +1,7 @@
 namespace ItemRarities.Components;
 
 [RegisterTypeInIl2Cpp(false)]
-public class MythicGlowEffect : MonoBehaviour
+internal class MythicGlowEffect : MonoBehaviour
 {
     private UILabel labelMythic;
     private Color originalColor;
@@ -11,9 +11,9 @@ public class MythicGlowEffect : MonoBehaviour
     private const float glowMax = 1.3f;
     private const float glowSpeed = 2f;
     
-    private static readonly Color shiftColor = new Color(1.1f, 1.1f, 0.9f);
+    private static readonly Color shiftColor = new(1.1f, 1.1f, 0.9f);
     
-    public void OnDisable()
+    private void OnDisable()
     {
         if (labelMythic != null)
         {

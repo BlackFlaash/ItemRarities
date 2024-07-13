@@ -1,6 +1,5 @@
 ﻿using Il2CppTLD.Cooking;
 using ItemRarities.Managers;
-using ItemRarities.Utilities;
 
 namespace ItemRarities;
 
@@ -31,7 +30,9 @@ internal static class RarityLabelPatches
                 if (t.IsHoveredOver())
                 {
                     RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_SegmentLabel.gameObject.transform, 0, 35, 0);
-                    RarityUIManager.UpdateRarityLabelProperties(t.GetGearItem());
+                    RarityUIManager.UpdateRarityLabelProperties(t.m_GearItem);
+                    if (t.m_GearItem == null) break;
+                    t.m_BG.color = RarityUIManager.GetRarityAndColour(t.m_GearItem);
                     break;
                 }
                 else

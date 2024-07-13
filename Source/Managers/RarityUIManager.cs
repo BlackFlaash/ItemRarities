@@ -115,10 +115,7 @@ internal static class RarityUIManager
 
     internal static void UpdateClothingSlotColors(ClothingSlot slot)
     {
-        var color = slot.m_GearItem != null 
-            ? RarityUIManager.GetRarityAndColour(slot.m_GearItem) 
-            : new Color(1f, 1f, 1f, 0.5f);
-    
+        var color = slot.m_GearItem != null ? GetRarityAndColour(slot.m_GearItem) : new Color(1f, 1f, 1f, 0.5f);
         var hoverColor = new Color(color.r, color.g, color.b, 0.5f);
         var pressedColor = new Color(color.r, color.g, color.b, 0.6f);
 

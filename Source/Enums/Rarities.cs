@@ -3,7 +3,7 @@ namespace ItemRarities.Enums;
 /// <summary>
 /// Represents different rarity levels for GearItems.
 /// </summary>
-internal enum Rarities
+public enum Rarities
 {
     None,
     Common,
