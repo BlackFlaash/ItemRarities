@@ -16,7 +16,7 @@
 
 ## GENERAL INFORMATION / FEATURES:
 
-Item Rarities is a modification that give each item within [**The Long Dark**](https://www.hinterlandgames.com/the-long-dark/) a sense of exclusivity.
+Item Rarities is a modification that gives each item within [**The Long Dark**](https://www.hinterlandgames.com/the-long-dark/) a sense of exclusivity.
 
 #### General Features
 - **Rarity Classifications:** Each item is given a 'rarity' based on several different factors.
@@ -81,7 +81,7 @@ Currently, no mods are incompatible, but when there are some, avoid using the fo
 
 This section is for anybody who wants to add a rarity to any of their custom items through code, it's pretty simple - you just have to follow what's below. However, if you are currently using the **[ModComponent SDK](https://github.com/Deaadman/ModComponentSDK)** then you'll be better off using the integrated functionality as seen **[here]()**.
 
-If you have a mod that already contains some code, you'll need to install the **[NuGet]()** package into your project. After doing so, it's as simple as including this within your project.
+If you have a mod that already contains some code, you'll need to install the **[NuGet](https://www.nuget.org/packages/ItemRarities)** package into your project. After doing so, it's as simple as including this within your project.
 
 ```csharp
 using ItemRarities.Enums;

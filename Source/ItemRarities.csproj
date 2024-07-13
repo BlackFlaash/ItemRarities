@@ -8,12 +8,31 @@
 		<Nullable>enable</Nullable>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<DebugType>none</DebugType>
+		<Version>2.0.0</Version>
+		<Title>Item Rarities</Title>
+		<Authors>Deadman</Authors>
+		<Description>Item Rarities is a modification that gives each item within The Long Dark a sense of exclusivity.</Description>
+		<Copyright>Copyright (c) 2023-2024 Deadman</Copyright>
+		<PackageProjectUrl>https://tldmods.com/?q=itemrarities</PackageProjectUrl>
+		<PackageLicenseUrl>https://github.com/Deaadman/ItemRarities/blob/release/LICENSE</PackageLicenseUrl>
+		<RepositoryUrl>https://github.com/Deaadman/ItemRarities</RepositoryUrl>
+		<PackageTags>thelongdark, tld, mods</PackageTags>
+		<PackageReleaseNotes>https://github.com/Deaadman/ItemRarities/releases</PackageReleaseNotes>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<!-- This should point to wherever your games primary EXE is -->
 		<TheLongDarkPath>C:\Program Files (x86)\Steam\steamapps\common\TheLongDark</TheLongDarkPath>
 		<ReleaseFolderPath>D:\The Long Dark\Projects\Maintained\ItemRarities\Release</ReleaseFolderPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+	  <DocumentationFile>bin\Debug\ItemRarities.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+	  <DocumentationFile>bin\Release\ItemRarities.xml</DocumentationFile>
 	</PropertyGroup>
 	
 	<!-- List of used references -->
