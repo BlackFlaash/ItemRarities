@@ -32,7 +32,7 @@ internal static class RarityLabelPatches
                     RarityUIManager.InstantiateOrMoveRarityLabel(__instance.m_SegmentLabel.gameObject.transform, 0, 35, 0);
                     RarityUIManager.UpdateRarityLabelProperties(t.m_GearItem);
                     if (t.m_GearItem == null) break;
-                    t.m_BG.color = RarityUIManager.GetRarityAndColour(t.m_GearItem);
+                    t.m_BG.color = RarityUIManager.GetRarityAndColour(t.m_GearItem, 1, 0.3f);
                     break;
                 }
                 else
@@ -69,8 +69,11 @@ internal static class RarityLabelPatches
     {
         private static void Postfix(Panel_HUD __instance, string hoverText, GameObject itemUnderCrosshairs, HoverTextState textState)
         {
-            if (itemUnderCrosshairs == null || itemUnderCrosshairs.GetComponent<GearItem>() == null) return;
-            __instance.m_Label_ObjectName.color = RarityUIManager.GetRarityAndColour(itemUnderCrosshairs.GetComponent<GearItem>());
+            if (itemUnderCrosshairs == null) return;
+            if (itemUnderCrosshairs.GetComponent<GearItem>() != null)
+            {
+                __instance.m_Label_ObjectName.color = RarityUIManager.GetRarityAndColour(itemUnderCrosshairs.GetComponent<GearItem>());   
+            }
         }
     }
     

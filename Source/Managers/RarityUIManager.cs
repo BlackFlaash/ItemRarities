@@ -45,9 +45,9 @@ internal static class RarityUIManager
         }
     }
     
-    internal static Color GetRarityAndColour(GearItem gearItem, float alpha = 1f) => GetRarityColour(RarityManager.GetRarity(gearItem.name), alpha);
+    internal static Color GetRarityAndColour(GearItem gearItem, float alpha = 1f, float secondAlpha = 0f) => GetRarityColour(RarityManager.GetRarity(gearItem.name), alpha, secondAlpha);
     
-    private static Color GetRarityColour(Rarities rarity, float alpha = 1f)
+    private static Color GetRarityColour(Rarities rarity, float alpha = 1f, float secondAlpha = 0f)
     {
         if (Settings.Instance.customColours)
         {
@@ -59,7 +59,7 @@ internal static class RarityUIManager
                 Rarities.Epic => new Color(Settings.Instance.epicRed, Settings.Instance.epicGreen, Settings.Instance.epicBlue, alpha),
                 Rarities.Legendary => new Color(Settings.Instance.legendaryRed, Settings.Instance.legendaryGreen, Settings.Instance.legendaryBlue, alpha),
                 Rarities.Mythic => new Color(Settings.Instance.mythicRed, Settings.Instance.mythicGreen, Settings.Instance.mythicBlue, alpha),
-                _ => Color.clear
+                _ => new Color(1, 1, 1, secondAlpha)
             };
         }
         return rarity switch
@@ -70,7 +70,7 @@ internal static class RarityUIManager
             Rarities.Epic => new Color(0.7f, 0.3f, 0.9f, alpha),
             Rarities.Legendary => new Color(0.9f, 0.5f, 0.2f, alpha),
             Rarities.Mythic => new Color(0.8f, 0.7f, 0.3f, alpha),
-            _ => Color.clear
+            _ => new Color(1, 1, 1, secondAlpha)
         };
     }
     
