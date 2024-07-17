@@ -29,7 +29,7 @@ internal static class RarityUIPatches
     {
         private static void Postfix(InventoryGridItem __instance, bool isOver)
         {
-            if (__instance.m_Button == null) return;
+            if (__instance.m_Button == null || __instance.m_GearItem == null) return;
             __instance.m_Button.hover = RarityUIManager.GetRarityAndColour(__instance.m_GearItem, 0.5f);
             __instance.m_Button.pressed = RarityUIManager.GetRarityAndColour(__instance.m_GearItem, 0.5f, 0.5f);
         }

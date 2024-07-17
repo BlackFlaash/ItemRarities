@@ -72,7 +72,7 @@ internal static class RarityLabelPatches
             if (itemUnderCrosshairs == null) return;
             if (itemUnderCrosshairs.GetComponent<GearItem>() != null)
             {
-                __instance.m_Label_ObjectName.color = RarityUIManager.GetRarityAndColour(itemUnderCrosshairs.GetComponent<GearItem>());   
+                __instance.m_Label_ObjectName.color = RarityUIManager.GetRarityAndColour(itemUnderCrosshairs.GetComponent<GearItem>(), 1f, 1f);   
             }
         }
     }
