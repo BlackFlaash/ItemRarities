@@ -57,8 +57,57 @@ internal static class RarityUIPatches
         }
     }
     
+    [HarmonyPatch(typeof(Panel_Container), nameof(Panel_Container.Initialize))]
+    private static class InitializeSortRarityButtonContainer
+    {
+        private static void Postfix(Panel_Container __instance)
+        {
+            UIButtonExtensions.NewSortButton(__instance.m_SortButtons, "Button_SortRarity", "ico_Star", __instance.OnSortInventoryChange, 100, 1.8f);
+            __instance.m_SortFlipDictionary.Add("GAMEPLAY_SortRarity", false);
+        }
+    }
+    
+    [HarmonyPatch(typeof(Panel_Container), nameof(Panel_Container.OnSortInventoryChange))]
+    private static class SortChangeRarityPatchContainer
+    {
+        private static void Prefix(Panel_Container __instance, UIButton sortButtonClicked)
+        {
+            if (sortButtonClicked.name == "Button_SortRarity")
+            {
+                if (__instance.m_InventorySortName == "GAMEPLAY_SortRarity")
+                {
+                    RarityUIManager.ToggleRaritySort();
+                }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(Panel_Container), nameof(Panel_Container.UpdateFilteredContainerList))]
+    private static class SortByRaritiesPatchContainerList
+    {
+        private static void Postfix(Panel_Container __instance)
+        {
+            if (__instance.m_InventorySortName == "GAMEPLAY_SortRarity")
+            {
+                RarityUIManager.CompareGearByRarity(__instance, false);
+            }
+        }
+    }
+    
+    [HarmonyPatch(typeof(Panel_Container), nameof(Panel_Container.UpdateFilteredInventoryList))]
+    private static class SortByRaritiesPatchContainerInventoryList
+    {
+        private static void Postfix(Panel_Container __instance)
+        {
+            if (__instance.m_InventorySortName == "GAMEPLAY_SortRarity")
+            {
+                RarityUIManager.CompareGearByRarity(__instance);
+            }
+        }
+    }
+    
     [HarmonyPatch(typeof(Panel_Inventory), nameof(Panel_Inventory.Initialize))]
-    private static class InitializeSortRarityButton
+    private static class InitializeSortRarityButtonInventory
     {
         private static void Postfix(Panel_Inventory __instance)
         {
@@ -68,7 +117,7 @@ internal static class RarityUIPatches
     }
     
     [HarmonyPatch(typeof(Panel_Inventory), nameof(Panel_Inventory.OnSortChange))]
-    private static class SortChangeRarityPatch
+    private static class SortChangeRarityPatchInventory
     {
         private static void Prefix(Panel_Inventory __instance, UIButton sortButtonClicked)
         {
@@ -83,7 +132,7 @@ internal static class RarityUIPatches
     }
 
     [HarmonyPatch(typeof(Panel_Inventory), nameof(Panel_Inventory.UpdateFilteredInventoryList))]
-    private static class SortByRaritiesPatch
+    private static class SortByRaritiesPatchInventory
     {
         private static void Postfix(Panel_Inventory __instance)
         {

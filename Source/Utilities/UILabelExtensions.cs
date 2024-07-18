@@ -54,8 +54,8 @@ internal static class UILabelExtensions
         label.color = color;
         label.capsLock = capsLock;
         
-        label.effectStyle = UILabel.Effect.Outline;
+        /*label.effectStyle = UILabel.Effect.Outline;
         label.effectColor = Color.black;
-        label.effectDistance = new Vector2(0.5f, 0.5f);
+        label.effectDistance = new Vector2(0.5f, 0.5f);*/
     }
 }

@@ -24,15 +24,38 @@ internal static class RarityUIManager
             var rarityA = RarityManager.GetRarity(a.name);
             var rarityB = RarityManager.GetRarity(b.name);
             
-            return isRaritySortDescending 
-                ? rarityB.CompareTo(rarityA) 
-                : rarityA.CompareTo(rarityB);
+            return isRaritySortDescending ? rarityB.CompareTo(rarityA): rarityA.CompareTo(rarityB);
         });
         
         panelInventory.m_FilteredInventoryList.Clear();
         foreach (var i in tempList)
         {
             panelInventory.m_FilteredInventoryList.Add(i);
+        }
+    }
+    
+    internal static void CompareGearByRarity(Panel_Container panelContainer, bool inventory = true)
+    {
+        var tempList = new List<GearItem>();
+        var inventoryOrContainerList = inventory ? panelContainer.m_FilteredContainerList : panelContainer.m_FilteredInventoryList;
+        
+        for (var i = 0; i < inventoryOrContainerList.Count; i++)
+        {
+            tempList.Add(inventoryOrContainerList[i]);
+        }
+        
+        tempList.Sort((a, b) => 
+        {
+            var rarityA = RarityManager.GetRarity(a.name);
+            var rarityB = RarityManager.GetRarity(b.name);
+        
+            return isRaritySortDescending ? rarityB.CompareTo(rarityA) : rarityA.CompareTo(rarityB);
+        });
+        
+        inventoryOrContainerList.Clear();
+        foreach (var i in tempList)
+        {
+            inventoryOrContainerList.Add(i);
         }
     }
     
