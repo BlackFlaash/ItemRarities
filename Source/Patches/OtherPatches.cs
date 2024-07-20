@@ -1,9 +1,9 @@
 ﻿using Il2CppTLD.Cooking;
 using ItemRarities.Managers;
 
-namespace ItemRarities;
+namespace ItemRarities.Patches;
 
-internal static class RarityLabelPatches
+internal static class OtherPatches
 {
     [HarmonyPatch(typeof(ItemDescriptionPage), nameof(ItemDescriptionPage.UpdateGearItemDescription))]
     private static class UpdateItemDescriptionPageRarity

@@ -28,20 +28,18 @@ internal static class RarityUIManager
         });
         
         panelInventory.m_FilteredInventoryList.Clear();
-        foreach (var i in tempList)
+        foreach (var item in tempList)
         {
-            panelInventory.m_FilteredInventoryList.Add(i);
+            panelInventory.m_FilteredInventoryList.Add(item);
         }
     }
     
-    internal static void CompareGearByRarity(Panel_Container panelContainer, bool inventory = true)
+    internal static void CompareGearByRarity(Panel_Container panelContainer)
     {
         var tempList = new List<GearItem>();
-        var inventoryOrContainerList = inventory ? panelContainer.m_FilteredContainerList : panelContainer.m_FilteredInventoryList;
-        
-        for (var i = 0; i < inventoryOrContainerList.Count; i++)
+        for (var i = 0; i < panelContainer.m_Container.m_Items.Count; i++)
         {
-            tempList.Add(inventoryOrContainerList[i]);
+            tempList.Add(panelContainer.m_FilteredContainerList[i]);
         }
         
         tempList.Sort((a, b) => 
@@ -52,10 +50,33 @@ internal static class RarityUIManager
             return isRaritySortDescending ? rarityB.CompareTo(rarityA) : rarityA.CompareTo(rarityB);
         });
         
-        inventoryOrContainerList.Clear();
-        foreach (var i in tempList)
+        panelContainer.m_FilteredContainerList.Clear();
+        foreach (var item in tempList)
         {
-            inventoryOrContainerList.Add(i);
+            panelContainer.m_FilteredContainerList.Add(item);
+        }
+    }
+    
+    internal static void CompareGearByRarityInventory(Panel_Container panelContainer)
+    {
+        var tempList = new List<GearItem>();
+        for (var i = 0; i < panelContainer.m_FilteredInventoryList.Count; i++)
+        {
+            tempList.Add(panelContainer.m_FilteredInventoryList[i]);
+        }
+        
+        tempList.Sort((a, b) => 
+        {
+            var rarityA = RarityManager.GetRarity(a.name);
+            var rarityB = RarityManager.GetRarity(b.name);
+        
+            return isRaritySortDescending ? rarityB.CompareTo(rarityA) : rarityA.CompareTo(rarityB);
+        });
+        
+        panelContainer.m_FilteredInventoryList.Clear();
+        foreach (var item in tempList)
+        {
+            panelContainer.m_FilteredInventoryList.Add(item);
         }
     }
     
@@ -177,6 +198,23 @@ internal static class RarityUIManager
             if (button == null) continue;
             button.hover = hoverColor;
             button.pressed = pressedColor;
+        }
+    }
+
+    internal static void UpdateContainerColours(Panel_Container panelContainer)
+    {
+        if (panelContainer.m_SelectedSpriteObj == null) return;
+        panelContainer.m_SelectedSpriteObj.GetComponentInChildren<UISprite>().color = GetRarityAndColour(panelContainer.GetCurrentlySelectedGearItem(), 1, 0.5f);
+            
+        var children = new Il2CppSystem.Collections.Generic.List<Transform>();
+        panelContainer.m_SelectedSpriteObj.GetComponentsInChildren(true, children);
+        for (var i = 0; i < children.Count; i++)
+        {
+            var child = children[i];
+            if (child.gameObject.name is "TweenedContent")
+            {
+                child.GetComponent<UISprite>().color = GetRarityAndColour(panelContainer.GetCurrentlySelectedGearItem(), 1, 1);
+            }
         }
     }
     
