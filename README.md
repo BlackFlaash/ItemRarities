@@ -23,6 +23,8 @@ Item Rarities is a modification that gives each item within [**The Long Dark**](
 - **Exclusivity:** Exclusive items will now 'feel' rarer once obtained.
 
 #### HUD / UI Changes
+- **Sort By Rarity:** You can now sort by the rarity of items in your inventory or containers!
+- **Container Grid:** Whenever an item is selected or hovered over in the container grid, then the colour of that grid item changes.
 - **Inventory Grid:** Whenever an item is selected or hovered over, it's grid colour changes, and it displays a label above the item.
 - **Clothing Grid:** If a clothing item is selected or hovered over, the grid colour changes, and it displays a label above the item.
 - **Radial Menu:** The radial menu changes colour based on what item is hovered over, while displaying a label of what rarity it is.
