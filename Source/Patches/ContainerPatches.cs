@@ -10,7 +10,9 @@ internal static class ContainerPatches
     {
         private static void Postfix(InventoryGridItem __instance)
         {
-            RarityUIManager.UpdateContainerColours(InterfaceManager.GetPanel<Panel_Container>());
+            var panelContainer = InterfaceManager.GetPanel<Panel_Container>();
+            if (panelContainer == null) return;
+            RarityUIManager.UpdateContainerColours(panelContainer);
         }
     }
     
@@ -68,7 +70,7 @@ internal static class ContainerPatches
     {
         private static void Postfix(Panel_Container __instance)
         {
-            if (__instance.m_FilteredContainerList.Count == 0) return;
+            if (__instance.m_FilteredContainerList.Count == 0 || __instance.m_FilteredInventoryList.Count == 0) return;
             RarityUIManager.UpdateContainerColours(__instance);
         }
     }
