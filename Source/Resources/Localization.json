@@ -1,7 +1,7 @@
 {
   "GAMEPLAY_RarityCommon": {
     "English": "Common",
-    "German": "",
+    "German": "Gewöhnlich",
     "Russian": "",
     "French (France)": "",
     "Japanese": "一般的",
@@ -11,7 +11,7 @@
     "Traditional Chinese": "",
     "Turkish": "Yaygın",
     "Norwegian": "",
-    "Spanish (Spain)": "",
+    "Spanish (Spain)": "Común",
     "Portuguese (Portugal)": "",
     "Portuguese (Brazil)": "",
     "Dutch": "",
@@ -23,7 +23,7 @@
 
   "GAMEPLAY_RarityUncommon": {
     "English": "Uncommon",
-    "German": "",
+    "German": "Ungewöhnlich",
     "Russian": "",
     "French (France)": "",
     "Japanese": "非一般的",
@@ -33,7 +33,7 @@
     "Traditional Chinese": "",
     "Turkish": "Sıradışı",
     "Norwegian": "",
-    "Spanish (Spain)": "",
+    "Spanish (Spain)": "Pococomún",
     "Portuguese (Portugal)": "",
     "Portuguese (Brazil)": "",
     "Dutch": "",
@@ -45,7 +45,7 @@
 
   "GAMEPLAY_RarityRare": {
     "English": "Rare",
-    "German": "",
+    "German": "Selten",
     "Russian": "",
     "French (France)": "",
     "Japanese": "珍品",
@@ -55,7 +55,7 @@
     "Traditional Chinese": "",
     "Turkish": "Nadir",
     "Norwegian": "",
-    "Spanish (Spain)": "",
+    "Spanish (Spain)": "Raro",
     "Portuguese (Portugal)": "",
     "Portuguese (Brazil)": "",
     "Dutch": "",
@@ -67,7 +67,7 @@
 
   "GAMEPLAY_RarityEpic": {
     "English": "Epic",
-    "German": "",
+    "German": "Episch",
     "Russian": "",
     "French (France)": "",
     "Japanese": "最高級",
@@ -77,7 +77,7 @@
     "Traditional Chinese": "",
     "Turkish": "Destansı",
     "Norwegian": "",
-    "Spanish (Spain)": "",
+    "Spanish (Spain)": "Épico",
     "Portuguese (Portugal)": "",
     "Portuguese (Brazil)": "",
     "Dutch": "",
@@ -89,7 +89,7 @@
 
   "GAMEPLAY_RarityLegendary": {
     "English": "Legendary",
-    "German": "",
+    "German": "Legendär",
     "Russian": "",
     "French (France)": "",
     "Japanese": "伝説的",
@@ -99,7 +99,7 @@
     "Traditional Chinese": "",
     "Turkish": "Efsanevi",
     "Norwegian": "",
-    "Spanish (Spain)": "",
+    "Spanish (Spain)": "Legendario",
     "Portuguese (Portugal)": "",
     "Portuguese (Brazil)": "",
     "Dutch": "",
@@ -111,7 +111,7 @@
 
   "GAMEPLAY_RarityMythic": {
     "English": "Mythic",
-    "German": "",
+    "German": "Mythisch",
     "Russian": "",
     "French (France)": "",
     "Japanese": "神話的",
@@ -121,7 +121,7 @@
     "Traditional Chinese": "",
     "Turkish": "Mitik",
     "Norwegian": "",
-    "Spanish (Spain)": "",
+    "Spanish (Spain)": "Mítico",
     "Portuguese (Portugal)": "",
     "Portuguese (Brazil)": "",
     "Dutch": "",
