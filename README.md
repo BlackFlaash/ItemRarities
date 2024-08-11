@@ -48,9 +48,9 @@ Item Rarities is a modification that gives each item within [**The Long Dark**](
 ### Required Dependencies:
 For optimal functionality of this modification, ensure you have the following versions or newer for the latest version of this modification.
 
-- [**The Long Dark**](https://store.steampowered.com/news/app/305620) - Version: **v2.31**
+- [**The Long Dark**](https://store.steampowered.com/news/app/305620) - Version: **v2.32**
 - [**MelonLoader**](https://github.com/LavaGang/MelonLoader/releases) - Version: **v0.6.1**
-- [**Localization Utilities**](https://github.com/dommrogers/LocalizationUtilities/releases) - Version: **v2.0.0**
+- [**Localization Utilities**](https://github.com/dommrogers/LocalizationUtilities/releases) - Version: **v2.0.1**
 - [**Mod Settings**](https://github.com/DigitalzombieTLD/ModSettings) - Version: **v2.0.0**
 
 ### Incompatible Mods:
@@ -76,6 +76,8 @@ Currently, no mods are incompatible, but when there are some, avoid using the fo
 - [**Elderly-Emre**](https://github.com/Elderly-Emre) - For providing Turkish translations.
 - **Laki** - For providing Polish translations.
 - [**LettereUniche**](https://github.com/LettereUniche) - For providing Italian translations.
+- **LordKai1102** - For providing German translations.
+- [**Mezav23**](https://github.com/mezav23) - For providing Spanish translations.
 
 ---
 
@@ -94,6 +96,7 @@ internal sealed class Mod : MelonMod
     public override void OnInitializeMelon()
     {
         RarityManager.AddGearItemAndRarity("GEAR_ExampleItem", Rarities.Mythic);
+        RarityManager.AddGearItemAndRarity("GEAR_ExampleItem2", Rarities.Legendary);
     }
 }
 ```
