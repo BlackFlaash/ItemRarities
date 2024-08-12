@@ -15,7 +15,7 @@ internal static class UILabelExtensions
             FontStyle.Normal,
             UILabel.Crispness.Always,
             inspectLabel ? NGUIText.Alignment.Left : NGUIText.Alignment.Center,
-            UILabel.Overflow.ResizeHeight,
+            UILabel.Overflow.ResizeFreely,
             true,
             inspectLabel ? 2 : 0,
             inspectLabel ? 14 : 18,
