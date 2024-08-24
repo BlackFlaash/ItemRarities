@@ -2,7 +2,7 @@
   "GAMEPLAY_RarityCommon": {
     "English": "Common",
     "German": "",
-    "Russian": "",
+    "Russian": "Обычное",
     "French (France)": "",
     "Japanese": "一般的",
     "Korean": "",
@@ -24,7 +24,7 @@
   "GAMEPLAY_RarityUncommon": {
     "English": "Uncommon",
     "German": "",
-    "Russian": "",
+    "Russian": "Необычное",
     "French (France)": "",
     "Japanese": "非一般的",
     "Korean": "",
@@ -46,7 +46,7 @@
   "GAMEPLAY_RarityRare": {
     "English": "Rare",
     "German": "",
-    "Russian": "",
+    "Russian": "Редкое",
     "French (France)": "",
     "Japanese": "珍品",
     "Korean": "",
@@ -68,7 +68,7 @@
   "GAMEPLAY_RarityEpic": {
     "English": "Epic",
     "German": "",
-    "Russian": "",
+    "Russian": "Эпическое",
     "French (France)": "",
     "Japanese": "最高級",
     "Korean": "",
@@ -90,7 +90,7 @@
   "GAMEPLAY_RarityLegendary": {
     "English": "Legendary",
     "German": "",
-    "Russian": "",
+    "Russian": "Легендарное",
     "French (France)": "",
     "Japanese": "伝説的",
     "Korean": "",
@@ -112,7 +112,7 @@
   "GAMEPLAY_RarityMythic": {
     "English": "Mythic",
     "German": "",
-    "Russian": "",
+    "Russian": "Мифическое",
     "French (France)": "",
     "Japanese": "神話的",
     "Korean": "",
